@@ -9,8 +9,16 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, username, sex, age, address
+    id, username, sex, age, address,photo
   </sql>
+  <select id="getuserList" resultType="com.yang.pojo.User">
+    select id,username,sex,age,address,photo from user
+      <where>
+        <if test="username != null and username !=''" >
+          username like CONCAT('%',concat(#{username,jdbcType=VARCHAR}),'%')
+        </if>
+      </where>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -79,6 +87,9 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="photo != null" >
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -89,5 +100,18 @@
       age = #{age,jdbcType=INTEGER},
       address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update   id="updateByIdList" >
+    update user
+    <set >
+      <if test="sex != null and sex !='' " >
+        sex = #{sex,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id
+    <foreach collection="idList" item="id" open="in(" close=")" separator=",">
+         #{id}
+    </foreach>
   </update>
 </mapper>

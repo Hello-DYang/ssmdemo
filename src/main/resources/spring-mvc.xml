@@ -39,7 +39,14 @@
     <!--    要使用spring mvc中的@Controller注解，就必须要配置<mvc:annotation-driven />，否则org.springframework.web.servlet.DispatcherServlet无法找到控制器并把请求分发到控制器。-->
     <mvc:annotation-driven />
 
+    <!--文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxInMemorySize" value="10240"/>
+        <property name="maxUploadSize" value="-1"/>
+    </bean>
 
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
     <import resource="classpath:spring-mybatis.xml"/>
 </beans>
     

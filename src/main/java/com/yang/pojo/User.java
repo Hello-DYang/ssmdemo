@@ -12,6 +12,8 @@ public class User {
 
     private String address;
 
+    private String photo;
+
     public Integer getId() {
         return id;
     }
@@ -52,6 +54,14 @@ public class User {
         this.address = address;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -60,6 +70,7 @@ public class User {
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }
