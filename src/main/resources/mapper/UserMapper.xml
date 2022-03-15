@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
 <mapper namespace="com.yang.dao.UserMapper" >
+
   <resultMap id="BaseResultMap" type="com.yang.pojo.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="username" property="username" jdbcType="VARCHAR" />
@@ -11,6 +13,8 @@
   <sql id="Base_Column_List" >
     id, username, sex, age, address,photo
   </sql>
+
+<!--  查询所有-->
   <select id="getuserList" resultType="com.yang.pojo.User">
     select id,username,sex,age,address,photo from user
       <where>
@@ -19,22 +23,39 @@
         </if>
       </where>
   </select>
+
+<!--  主键查询-->
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+<!--  根据id删除-->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yang.pojo.User" >
+
+<!--  插入-->
+    <insert id="insert" parameterType="com.yang.pojo.User" >
     insert into user (id, username, sex,
       age, address)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
       #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR})
   </insert>
+
+<!--  批量插入-->
+  <insert id="insertByList">
+    insert into user (username, sex, age, address, photo)
+    values
+    <foreach collection="list" item="user" separator=",">
+      (#{user.username},#{user.sex,jdbcType=VARCHAR},#{user.age},#{user.address,jdbcType=VARCHAR},#{user.photo,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+<!--  有选择的插入-->
   <insert id="insertSelective" parameterType="com.yang.pojo.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -72,6 +93,8 @@
       </if>
     </trim>
   </insert>
+
+<!--  有选择的更新-->
   <update id="updateByPrimaryKeySelective" parameterType="com.yang.pojo.User" >
     update user
     <set >
@@ -93,6 +116,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+<!--  通过主键进行更新-->
   <update id="updateByPrimaryKey" parameterType="com.yang.pojo.User" >
     update user
     set username = #{username,jdbcType=VARCHAR},
@@ -102,6 +126,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+<!--  批量更新通过主键-->
   <update   id="updateByIdList" >
     update user
     <set >

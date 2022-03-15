@@ -1,14 +1,16 @@
 package com.yang.dao;
 
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yang.pojo.User;
+import com.yang.pojo.UserExcel;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface UserMapper {
+
+public interface UserMapper extends BaseMapper<User> {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
@@ -24,4 +26,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     int updateByIdList(@Param("idList")List<Integer> idList, @Param("sex")String sex);
+
+    int insertByList(List<UserExcel> userExcelList);
 }

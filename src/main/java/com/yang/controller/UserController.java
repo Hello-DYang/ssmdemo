@@ -5,6 +5,7 @@ import com.yang.common.Result;
 import com.yang.common.ResultStatus;
 import com.yang.dao.UserMapper;
 import com.yang.pojo.User;
+import com.yang.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -29,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
 
 
     private Logger logger = Logger.getLogger ( UserController.class );
@@ -45,7 +48,7 @@ public class UserController {
     public Result<User> selectByPrimaryKey(Integer id){
         logger.info("根据id查找");
         Result result = new Result();
-        User user= userMapper.selectByPrimaryKey(id);
+        User user=userMapper.selectById(id);
         result.setData(user);
         result.setMessage("sucess");
         return result;
@@ -76,7 +79,7 @@ public class UserController {
     @RequestMapping("/deleteByPrimaryKey/{id}")
     public String deleteByPrimaryKey(@PathVariable("id") Integer id){
         logger.info("根据主键删除user");
-        int i=userMapper.deleteByPrimaryKey(id);
+        int i=userMapper.deleteById(id);
         logger.info("根据主键删除user返回值"+i);
         return "redirect:/user/pagingQueryUserList";
     }
@@ -159,7 +162,7 @@ public class UserController {
     /*
      * @Author Yang 
      * @Description 批量更新用户
-     * @Date 10:36 2022/3/11
+     * @Date 13:27 2022/3/11
      * @Param [req, resp]
      * @return void
      **/
@@ -175,7 +178,6 @@ public class UserController {
         }).collect(Collectors.toList());
         userMapper.updateByIdList(useridList,sex);
         resp.sendRedirect("/paper/allPaper");
-        return;
     }
 
 

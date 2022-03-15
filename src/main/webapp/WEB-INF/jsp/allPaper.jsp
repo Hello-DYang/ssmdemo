@@ -125,9 +125,11 @@
                         <div class="input_1"><input class="layui-input" type="text" id="sex" name="sex" placeholder="&nbsp;性别"></div>
                         <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="submitUpdate()">提&nbsp;交</button>
                     </form>
-
-
         </div>
+            <input style="margin-top: 4px"  type="file" id="file" name="myfile" />
+            <input style="margin-top: 4px" class="layui-btn" type="button" onclick="UpladFile()" value="上传" />
+            <input style="margin-top: 4px" class="layui-btn" type="button" onclick="cancleUploadFile()" value="取消" />
+
     </div>
     <div class="row clearfix">
             <table class="layui-table" lay-size="lg">
@@ -165,7 +167,6 @@
                                 <button type="button" style="background-color: #92B8B1" class="btn btn-default"><a href="${path}/paper/toUpdatePaper?id=${user.id}">编辑</a></button>
                                 <button type="button" style="background-color: #92B8B1" class="btn btn-default"><a href="javascript:void(0)" onclick="confirmDel(${user.id})">删除</a></button>
                             </div>
-
                         </td>
                     </tr>
                 </c:forEach>
@@ -271,6 +272,7 @@
             })
         }
 
+        // 批量删除
         window.onload=function(){
             var btn_1=document.getElementById("btn_1");
             var close=document.getElementsByClassName("close");
@@ -282,5 +284,53 @@
                 form_1[0].className="form_1";
             })
         }
+
+        //图片上传
+        var xhr;
+        //上传文件方法
+        function UpladFile() {
+            debugger
+            var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
+            var url="<%=basePath %>upload/uploadFile";
+
+            var form = new FormData(); // FormData 对象
+            form.append("uploadFile", fileObj); // 文件对象
+
+            xhr = new XMLHttpRequest();  // XMLHttpRequest 对象
+            xhr.open("post", url, true); //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
+            xhr.onload = uploadComplete; //请求完成
+            xhr.onerror =  uploadFailed; //请求失败
+
+            xhr.upload.onloadstart = function(){//上传开始执行方法
+                ot = new Date().getTime();   //设置上传开始时间
+                oloaded = 0;//设置上传开始时，以上传的文件大小为0
+            };
+            xhr.send(form); //开始上传，发送form数据
+            location.reload(true)
+        }
+
+        //上传成功响应
+        function uploadComplete(evt) {
+            //服务断接收完文件返回的结果
+
+            var data = JSON.parse(evt.target.responseText);
+            if(true) {
+                alert("上传成功！");
+            }else{
+                alert("上传失败！");
+            }
+
+        }
+        //上传失败
+        function uploadFailed(evt) {
+            alert("上传失败！");
+        }
+        //取消上传
+        function cancleUploadFile(){
+            xhr.abort();
+        }
+
+
+
     </script>
 </body>

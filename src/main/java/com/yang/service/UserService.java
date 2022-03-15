@@ -1,8 +1,9 @@
 package com.yang.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.yang.pojo.User;
 
-@Service
-public interface UserService {
+
+public interface UserService extends IService<User> {
+
 }

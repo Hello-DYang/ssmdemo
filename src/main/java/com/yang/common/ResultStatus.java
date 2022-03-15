@@ -17,8 +17,11 @@ public enum ResultStatus {
 
     //搜索结果不存在
     USER_NOT_EXISTS(1401, "user not exists"),
+
     PERMISSION_DENIED(1402,"permission denied"),
+
     ARTICLE_NOT_EXIST(1403,"article not exist"),
+
     ARTICLE_HAS_BEEN_DELETED(1403,"article has been deleted"),
     //参数类型缺失
     PARAMETER_ILLEGAL(1501, "parameter illegal");

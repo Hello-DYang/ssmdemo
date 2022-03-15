@@ -2,15 +2,15 @@ package com.yang.common;
 
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Yang
  * 返回结果集对象
  */
-
 public class Result<T> {
 
-    //返回错误码
+    //返回码
     private Integer code;
     //返回信息
     private String message;
