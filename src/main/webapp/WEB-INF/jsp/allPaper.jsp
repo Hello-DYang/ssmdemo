@@ -306,7 +306,7 @@
                 oloaded = 0;//设置上传开始时，以上传的文件大小为0
             };
             xhr.send(form); //开始上传，发送form数据
-            location.reload(true)
+            location.reload(true);
         }
 
         //上传成功响应

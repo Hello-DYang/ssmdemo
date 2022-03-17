@@ -5,13 +5,19 @@ import com.yang.common.DemoDataListener;
 import com.yang.common.EasyExcelUtil;
 import com.yang.dao.UserMapper;
 import com.yang.pojo.UserExcel;
+import com.yang.service.UserService;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.yang.common.DemoDataListener.getPictures;
 
 @Controller
 @RequestMapping("/upload")
@@ -19,6 +25,9 @@ public class UploadControlller {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 文件上传
@@ -49,10 +58,9 @@ public class UploadControlller {
 
     @RequestMapping(value = "uploadFile", method = {RequestMethod.GET, RequestMethod.POST })
     public String importFile(@RequestParam("uploadFile") MultipartFile files) throws Exception {
-            // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
-            // 这里 需要指定读用哪个class去读，然后读取第一个sheet 文件流会自动关闭
-            EasyExcel.read(files.getInputStream(), UserExcel.class, new DemoDataListener(userMapper)).sheet().doRead();
+         userService.upload(files);
          return "redirect:/user/pagingQueryUserList";
     }
+
     }
 
