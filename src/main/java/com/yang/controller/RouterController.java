@@ -43,6 +43,20 @@ public class RouterController {
         return "addPaper";
     }
 
+
+    /*
+     * @Author Yang 
+     * @Description 跳转到verfy页面
+     * @Date 11:18 2022/3/17
+     * @Param []
+     * @return java.lang.String
+     **/
+    @RequestMapping("toVerify")
+    public String toVerfyPaper() {
+        return "verify";
+    }
+
+
     /*
      * @Author Yang 
      * @Description 更新页面跳转
