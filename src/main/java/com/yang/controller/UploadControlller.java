@@ -1,23 +1,17 @@
 package com.yang.controller;
 
-import com.alibaba.excel.EasyExcel;
-import com.yang.common.DemoDataListener;
 import com.yang.common.EasyExcelUtil;
 import com.yang.dao.UserMapper;
 import com.yang.pojo.UserExcel;
 import com.yang.service.UserService;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.yang.common.DemoDataListener.getPictures;
 
 @Controller
 @RequestMapping("/upload")

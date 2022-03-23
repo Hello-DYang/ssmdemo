@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: yunping
+  User: Yang
   Date: 2022/3/17
   Time: 16:53
   To change this template use File | Settings | File Templates.
@@ -84,7 +84,7 @@
                     <!--data-appid :    (必须) 验证码CaptchaAppId, 从腾讯云的验证码控制台中获取, 验证码控制台页面内【图形验证】>【验证列表】进行查看 。如果未新建验证，请根据业务需求选择适合的验证渠道、验证场景进行新建-->
                     <!--data-cbfn :     (必须) 回调函数名, 函数名要与 data-cbfn 相同-->
                     <!--data-biz-state :(可选) 业务自定义透传参数, 会在回调函数内获取到 （res.bizState）-->
-                    <button id="TencentCaptcha" data-appid="****" data-cbfn="callbackName" data-biz-state="data-biz-state" class="btn btn-outline-primary" type="button" id="login">
+                    <button id="TencentCaptcha" data-appid="2085524457" data-cbfn="callbackName" data-biz-state="data-biz-state" class="btn btn-outline-primary" type="button" id="login">
                         <i class="bi bi-box-arrow-in-right"></i>
                         登陆
                     </button>

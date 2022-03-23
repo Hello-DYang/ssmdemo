@@ -2,7 +2,6 @@ package com.yang.controller;
 
 
 import com.yang.common.Result;
-import com.yang.common.ResultStatus;
 import com.yang.dao.UserMapper;
 import com.yang.pojo.User;
 import com.yang.service.UserService;

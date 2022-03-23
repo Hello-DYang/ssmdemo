@@ -69,4 +69,10 @@ public class RouterController {
         model.addAttribute("paper", userMapper.selectByPrimaryKey(id));
         return "updatePaper";
     }
+
+    @RequestMapping("toCaptcha")
+    public String toCaptcha() {
+        return "captcha";
+    }
+
 }
