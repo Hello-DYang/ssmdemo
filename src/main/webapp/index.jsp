@@ -51,8 +51,9 @@
     </div>
 </div>
 <div  class="btn-group" role="group" aria-label="...">
-    <button style="background-color: aquamarine" type="button" class="btn btn-default"><a href="/user/pagingQueryUserList">点击进入</a></button>
-    <button style="background-color: aquamarine" type="button" class="btn btn-default"><a href="/paper/toVerify">滑动验证</a></button>
+    <button style="background-color: aquamarine" type="button" class="btn btn-default"><a href="/user/pagingQueryUserList">点击进入-用户管理</a></button>
+    <button style="background-color: aquamarine" type="button" class="btn btn-default"><a href="/led/pagingQueryLedList">点击进入-Led屏管理</a></button>
+    <button style="background-color: aquamarine" type="button" class="btn btn-default"><a href="/paper/toVerify">滑动验证-腾讯云</a></button>
     <button style="background-color: aquamarine" type="button" class="btn btn-default"><a href="/paper/toCaptcha">滑动验证-tianai</a></button>
 </div>
 </div>
